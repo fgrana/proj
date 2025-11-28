@@ -1,0 +1,17 @@
+services:
+  db:
+    image: mysql:latest
+    env_file: ./.env
+    container_name: mysqlserver
+    environment:
+      ROOT_PASSWORD: ${ROOT_PASSWORD} # Set a strong root password
+      MYSQL_DATABASE: ${DATABASE} # Optional: create a default database
+      MYSQL_USER: ${MYSQL_USER} # Optional: create a default user
+      MYSQL_PASSWORD: ${ROOT_PASSWORD}
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
